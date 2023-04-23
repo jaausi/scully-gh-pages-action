@@ -7,7 +7,7 @@ import * as lockfile from '@yarnpkg/lockfile';
 import semver from 'semver';
 import { readFileSync } from 'fs';
 
-const DEFAULT_DEPLOY_BRANCH = 'master';
+const DEFAULT_DEPLOY_BRANCH = 'main';
 
 async function run(): Promise<void> {
   try {
@@ -104,7 +104,7 @@ async function run(): Promise<void> {
     await exec.exec(`git commit`, ['-m', `deployed via Scully Publish Action 🎩 for ${github.context.sha}`], {
       cwd: './dist/static',
     });
-    await exec.exec(`git push`, ['-f', repoURL, `master:${deployBranch}`], {
+    await exec.exec(`git push`, ['-f', repoURL, `main:${deployBranch}`], {
       cwd: './dist/static',
     });
     console.log('Finished deploying your site.');
